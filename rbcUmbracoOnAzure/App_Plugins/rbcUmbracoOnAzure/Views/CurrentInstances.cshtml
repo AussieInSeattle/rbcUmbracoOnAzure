@@ -1,0 +1,23 @@
+﻿@using rbcUmbracoOnAzure;
+@using Umbraco.Core;
+<h1>rbcUmbracoOnAzure Debugging</h1>
+<p>
+    <strong>My Current ARRAffinity Cookie in browser:</strong><br />
+    <script>document.write(document.cookie.replace("ARRAffinity=", ""));</script><br />
+    <a href="./" onclick="document.cookie = 'ARRAffinity=;domain=' + window.location.host + ';path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';">Clear My Cookie and Give me a Random Instance from ARR</a>
+</p>
+<p>
+    <strong>All Instances (MachineName - InstanceId) Reported in Database via ApplicationEventHandler.ApplicationStarted:</strong> (click to hit that instance)<br />
+    @{
+        //look in the db for other instances
+        var db = ApplicationContext.Current.DatabaseContext.Database;
+        var instances = db.Query<AzureWebsitesInstanceDto>("WHERE IsActive=1");
+        if (instances != null && instances.Any())
+        {
+            foreach (var instance in instances)
+            {
+                @instance.ComputerName <a href="./" onclick="document.cookie = 'ARRAffinity=@instance.InstanceId;domain=' + window.location.host + ';path=/;';">@instance.InstanceId</a><br />
+            }
+        }
+    }
+</p>
