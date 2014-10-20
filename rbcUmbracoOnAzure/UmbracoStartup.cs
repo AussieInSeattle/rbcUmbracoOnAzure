@@ -37,7 +37,7 @@ namespace rbcUmbracoOnAzure
                 string websiteName = Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME");
                 string instanceId = Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID");
                 string computerName = Environment.MachineName;
-                if (websiteName.Length > 0 && instanceId.Length > 0)
+                if (!String.IsNullOrEmpty(websiteName) && !String.IsNullOrEmpty(instanceId))
                 {
                     var instance = db.SingleOrDefault<AzureWebsitesInstanceDto>("WHERE InstanceId=@0 AND WebsiteName=@1", instanceId, websiteName);
                     if (instance == null)  //create new isntance

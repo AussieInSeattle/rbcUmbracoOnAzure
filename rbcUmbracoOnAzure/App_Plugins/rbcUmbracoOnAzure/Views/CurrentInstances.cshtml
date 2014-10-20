@@ -3,8 +3,9 @@
 <h1>rbcUmbracoOnAzure Debugging</h1>
 <p>
     <strong>My Current ARRAffinity Cookie in browser:</strong><br />
-    <script>document.write(document.cookie.replace("ARRAffinity=", ""));</script><br />
-    <a href="./" onclick="document.cookie = 'ARRAffinity=;domain=' + window.location.host + ';path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';">Clear My Cookie and Give me a Random Instance from ARR</a>
+    <span id="CurrentARRAffinity"></span>
+    <br />
+    <a href="#" id="ClearARRAffinity">Clear My Cookie and Give me a Random Instance from ARR</a>
 </p>
 <p>
     <strong>All Instances (MachineName - InstanceId) Reported in Database via ApplicationEventHandler.ApplicationStarted:</strong> (click to hit that instance)<br />
@@ -16,8 +17,22 @@
         {
             foreach (var instance in instances)
             {
-                @instance.ComputerName <a href="./" onclick="document.cookie = 'ARRAffinity=@instance.InstanceId;domain=' + window.location.host + ';path=/;';">@instance.InstanceId</a><br />
+                @instance.ComputerName <a href="#" class="SetARRAffinity" data-affinity="@instance.InstanceId">@instance.InstanceId</a><br />
             }
         }
     }
 </p>
+
+<script type="text/javascript">
+    $(function () {
+        $("#CurrentARRAffinity").val(document.cookie.replace("ARRAffinity=", ""));
+
+        $("#ClearARRAffinity").click(function () {
+            document.cookie = 'ARRAffinity=;domain=' + window.location.host + ';path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        });
+
+        $(".SetARRAffinity").click(function () {
+            document.cookie = 'ARRAffinity=' + $(this).data('affinty') + ';domain=' + window.location.host + ';path=/;'
+        });
+    });
+</script>
