@@ -14,4 +14,9 @@
     <!-- <releaseNotes>Summary of changes made in this release of the package.</releaseNotes> -->
     <copyright>Copyright 2014</copyright>
   </metadata>
+  <files>
+    <file src="App_Plugins\rbcUmbracoOnAzure\**\*.*" target="App_Plugins\rbcUmbracoOnAzure" />
+    <file src="readme.txt" target="" />
+    <file src="Global.asax" target="" />
+  </files>
 </package>

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using umbraco.interfaces;
 using Umbraco.Core;
 using Umbraco.Core.Persistence;
@@ -12,7 +9,7 @@ using Umbraco.Web.Cache;
 using System.Web.Routing;
 using System.Web.Mvc;
 
-namespace rbcUmbracoOnAzure
+namespace RbcUmbracoOnAzure
 {
     public class UmbracoStartup : ApplicationEventHandler
     {

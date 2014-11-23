@@ -208,9 +208,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="App_Plugins\rbcUmbracoOnAzure\Views\CurrentInstances.cshtml" />
     <Content Include="App_Plugins\rbcUmbracoOnAzure\Views\Web.config" />
+    <Content Include="rbcUmbracoOnAzure.nuspec" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -219,6 +221,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="readme.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

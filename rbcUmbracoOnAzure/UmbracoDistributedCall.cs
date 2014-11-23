@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Web.Services.Description;
 using System.Web.Services.Protocols;
@@ -12,7 +10,7 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Sync;
 using Umbraco.Web.Cache;
 
-namespace rbcUmbracoOnAzure
+namespace RbcUmbracoOnAzure
 {
     public class UmbracoDistributedCall
     {
@@ -74,48 +72,44 @@ namespace rbcUmbracoOnAzure
             ResponseNamespace = "http://umbraco.org/webservices/",
             Use = SoapBindingUse.Literal,
             ParameterStyle = SoapParameterStyle.Wrapped)]
-        public void RefreshAll(Guid uniqueIdentifier, string Login, string Password, string instanceId, string domain)
+        public void RefreshAll(Guid uniqueIdentifier, string login, string password, string instanceId, string domain)
         {
             //pass in instance id cookie so we get to the right server
             var cookieContainer = new System.Net.CookieContainer();
             cookieContainer.Add(new Uri("http://" + domain + "/"), new System.Net.Cookie("ARRAffinity", instanceId));
-            this.CookieContainer = cookieContainer;
+            CookieContainer = cookieContainer;
             //CookieContainer.Add(new System.Net.Cookie("ARRAffinity", instanceId));
-            BeginInvoke("RefreshAll", new object[] { uniqueIdentifier, Login, Password }, null, null);
+            BeginInvoke("RefreshAll", new object[] { uniqueIdentifier, login, password }, null, null);
         }
-
-
 
         [SoapDocumentMethod("http://umbraco.org/webservices/RefreshById",
             RequestNamespace = "http://umbraco.org/webservices/",
             ResponseNamespace = "http://umbraco.org/webservices/",
             Use = SoapBindingUse.Literal,
             ParameterStyle = SoapParameterStyle.Wrapped)]
-        public void RefreshById(Guid uniqueIdentifier, int Id, string Login, string Password, string instanceId, string domain)
+        public void RefreshById(Guid uniqueIdentifier, int id, string login, string password, string instanceId, string domain)
         {
             //pass in instance id cookie so we get to the right server
             var cookieContainer = new System.Net.CookieContainer();
             cookieContainer.Add(new Uri("http://" + domain + "/"), new System.Net.Cookie("ARRAffinity", instanceId));
-            this.CookieContainer = cookieContainer;
+            CookieContainer = cookieContainer;
             //CookieContainer.Add(new System.Net.Cookie("ARRAffinity", instanceId));
-            BeginInvoke("RefreshById", new object[] { uniqueIdentifier, Id, Login, Password }, null, null);
+            BeginInvoke("RefreshById", new object[] { uniqueIdentifier, id, login, password }, null, null);
         }
-
-
 
         [SoapDocumentMethod("http://umbraco.org/webservices/RemoveById",
             RequestNamespace = "http://umbraco.org/webservices/",
             ResponseNamespace = "http://umbraco.org/webservices/",
             Use = SoapBindingUse.Literal,
             ParameterStyle = SoapParameterStyle.Wrapped)]
-        public void RemoveById(Guid uniqueIdentifier, int Id, string Login, string Password, string instanceId, string domain)
+        public void RemoveById(Guid uniqueIdentifier, int id, string login, string password, string instanceId, string domain)
         {
             //pass in instance id cookie so we get to the right server
             var cookieContainer = new System.Net.CookieContainer();
             cookieContainer.Add(new Uri("http://" + domain + "/"), new System.Net.Cookie("ARRAffinity", instanceId));
-            this.CookieContainer = cookieContainer;
+            CookieContainer = cookieContainer;
             //CookieContainer.Add(new System.Net.Cookie("ARRAffinity", instanceId));
-            BeginInvoke("RemoveById", new object[] { uniqueIdentifier, Id, Login, Password }, null, null);
+            BeginInvoke("RemoveById", new object[] { uniqueIdentifier, id, login, password }, null, null);
         }
     }
 }
